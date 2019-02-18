@@ -1,0 +1,21 @@
+plugins {
+    id 'java'
+}
+
+group 'net.lostillusion'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.11
+
+repositories {
+    mavenCentral()
+    jcenter()
+    maven { url 'https://jitpack.io' }
+}
+
+dependencies {
+    implementation 'org.postgresql:postgresql:42.2.5'
+    implementation 'org.apache.commons:commons-lang3:3.8.1'
+    implementation 'org.atteo.classindex:classindex:3.4'
+    implementation group: 'com.github.Bastian', name: 'Lavaplayer-Wrapper', version: 'master-SNAPSHOT'
+}
