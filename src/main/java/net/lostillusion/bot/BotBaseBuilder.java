@@ -1,6 +1,5 @@
 package net.lostillusion.bot;
 
-import java.util.function.Function;
 import java.util.function.Supplier;
 import net.lostillusion.bot.abstracts.UserMess;
 import net.lostillusion.bot.database.Database;
@@ -10,26 +9,15 @@ import net.lostillusion.bot.implementations.DefaultUserMessImpl;
 import net.lostillusion.bot.interfaces.CommandCore;
 import net.lostillusion.bot.interfaces.MessageScanner;
 import org.javacord.api.DiscordApi;
-import org.javacord.api.DiscordApiBuilder;
 
 public class BotBaseBuilder {
   private DiscordApi api;
   private CommandCore commandCore = new DefaultCommandCoreImpl();
   private MessageScanner messageScanner = new DefaultMessageScannerImpl();
-  private Database database;
+  private Database database = null;
   private String prefix;
   private Class<? extends UserMess> mess = DefaultUserMessImpl.class;
   private BotBaseBuilder() {}
-  /**
-   * Handle log in.
-   * @param function Gives you a DiscordApiBuilder to create a DiscordApi instance
-   * @return BotBaseBuilder to chain method calls
-   */
-  public static BotBaseBuilder withApi(Function<DiscordApiBuilder, DiscordApi> function) {
-    BotBaseBuilder builder = new BotBaseBuilder();
-    builder.api = function.apply(new DiscordApiBuilder());
-    return builder;
-  }
 
   /**
    * Handle log in.
