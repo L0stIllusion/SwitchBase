@@ -24,6 +24,7 @@ public class BotBase {
     BotBase.database = database;
     BotBase.prefix = prefix;
     BotBase.mess = mess;
+    api.addMessageCreateListener(messageScanner::scanMessage);
   }
 
   public static DiscordApi getApi() {
