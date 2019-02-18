@@ -24,6 +24,7 @@ public class BotBase {
     BotBase.database = database;
     BotBase.prefix = prefix;
     BotBase.mess = mess;
+    commandCore.initCommands();
     api.addMessageCreateListener(messageScanner::scanMessage);
   }
 
