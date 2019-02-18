@@ -16,8 +16,8 @@ repositories {
 }
 
 dependencies {
-    api 'org.postgresql:postgresql:42.2.5'
+    implementation 'org.postgresql:postgresql:42.2.5'
     implementation 'org.apache.commons:commons-lang3:3.8.1'
     implementation 'org.atteo.classindex:classindex:3.4'
-    api group: 'com.github.Bastian', name: 'Lavaplayer-Wrapper', version: 'master-SNAPSHOT'
+    implementation group: 'com.github.Bastian', name: 'Lavaplayer-Wrapper', version: 'master-SNAPSHOT'
 }
