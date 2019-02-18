@@ -6,6 +6,7 @@ group 'net.lostillusion'
 version '1.0-SNAPSHOT'
 
 sourceCompatibility = 1.11
+targetCompatibility = 1.11
 
 repositories {
     mavenCentral()
