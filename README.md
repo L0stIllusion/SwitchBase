@@ -15,6 +15,7 @@ This project is currently hosted on Jitpack.io.
 ```gradle
 repositories {
 	...
+	jCenter()
 	maven { url 'https://jitpack.io' }
 }
 ```
