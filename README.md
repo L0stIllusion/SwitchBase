@@ -22,7 +22,7 @@ repositories {
 ##### Dependencies
 ```gradle
 dependencies {
-        implementation 'com.github.depressingillusion:Bot_Base:Tag'
+        implementation 'com.github.depressingillusion:SwitchBase:Tag'
 }
 ```
 And that's all, you may now use the base in your bot! If you use another build manager go to the [jitpack.io](https://jitpack.io/#depressingillusion/Bot_Base) site, and follow the instructions for your build manager.
