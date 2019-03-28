@@ -1,5 +1,9 @@
 package net.lostillusion.bot;
 
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
+import java.util.function.Function;
 import java.util.function.Supplier;
 import net.lostillusion.bot.abstracts.UserMess;
 import net.lostillusion.bot.database.Database;
@@ -9,6 +13,7 @@ import net.lostillusion.bot.implementations.DefaultUserMessImpl;
 import net.lostillusion.bot.interfaces.CommandCore;
 import net.lostillusion.bot.interfaces.MessageScanner;
 import org.javacord.api.DiscordApi;
+import org.javacord.api.DiscordApiBuilder;
 
 public class BotBaseBuilder {
   private DiscordApi api;
@@ -30,6 +35,19 @@ public class BotBaseBuilder {
     return builder;
   }
 
+  public static BotBaseBuilder withApi(Function<DiscordApiBuilder, DiscordApi> builderDiscordApiFunction) {
+    BotBaseBuilder builder = new BotBaseBuilder();
+    builder.api = builderDiscordApiFunction.apply(new DiscordApiBuilder());
+    return builder;
+  }
+
+  public static CompletableFuture<BotBaseBuilder> withApi(CompletableFuture<DiscordApi> api) {
+    BotBaseBuilder builder = new BotBaseBuilder();
+    return api.thenApply(dApi -> {
+      builder.api = dApi;
+      return builder;
+    });
+  }
   /**
    * Handle log in.
    * @param dapi Discord Api Instance
