@@ -17,14 +17,13 @@ public class BotBase {
   private static Database database;
   private static String prefix;
   private static Class<? extends UserMess> mess;
-  public BotBase(DiscordApi api, String prefix, CommandCore commandCore, MessageScanner messageScanner, Database database, Class<? extends UserMess> mess, boolean log) {
+  BotBase(DiscordApi api, String prefix, CommandCore commandCore, MessageScanner messageScanner, Database database, Class<? extends UserMess> mess, boolean log) {
     BotBase.api = api;
     BotBase.commandCore = commandCore;
     BotBase.messageScanner = messageScanner;
     BotBase.database = database;
     BotBase.prefix = prefix;
     BotBase.mess = mess;
-    commandCore.initCommands();
     api.addMessageCreateListener(messageScanner::scanMessage);
   }
 
