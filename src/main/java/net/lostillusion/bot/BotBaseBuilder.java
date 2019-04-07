@@ -22,6 +22,7 @@ public class BotBaseBuilder {
   private Database database = null;
   private String prefix;
   private Class<? extends UserMess> mess = DefaultUserMessImpl.class;
+  private boolean log = false;
   private BotBaseBuilder() {}
 
   /**
@@ -84,7 +85,11 @@ public class BotBaseBuilder {
     return this;
   }
 
+  public BotBaseBuilder setDefaultLogging(boolean log) {
+    this.log = log;
+    return this;
+  }
   public BotBase build() {
-    return new BotBase(api, prefix, commandCore, messageScanner, database, mess);
+    return new BotBase(api, prefix, commandCore, messageScanner, database, mess, log);
   }
 }

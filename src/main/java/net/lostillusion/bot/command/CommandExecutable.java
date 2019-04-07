@@ -9,11 +9,11 @@ import org.javacord.api.DiscordApi;
 public interface CommandExecutable extends CommandBody {
   default void execute(UserMess mess, DiscordApi api) {
     try {
-      if(this instanceof Command) {
+      if(this instanceof CommandInfo) {
         MessageScanner.logToConsole((CommandInfo) this, mess);
         executeCommand(mess, api);
       } else {
-        Logger.getGlobal().severe("Non-Command executed! ("+mess.getMessage()+")");
+        Logger.getGlobal().severe("Command does not have any info! ("+mess.getMessage()+")");
       }
     } catch (RuntimeException e) {
       exceptionallySend(e, mess::getTextChannel, ExceptionEmbedPost::new);

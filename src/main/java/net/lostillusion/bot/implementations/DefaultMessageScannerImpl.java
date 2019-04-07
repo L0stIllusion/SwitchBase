@@ -11,7 +11,7 @@ public class DefaultMessageScannerImpl implements MessageScanner {
     if(!event.isServerMessage() || !event.getMessageAuthor().isUser()) return;
     UserMess mess = BotBase.getUserMess(event).orElseThrow(AssertionError::new); //Something is seriously wrong if an exception is thrown
     if(mess.getPrefix() != null)  {
-      BotBase.getCommandCore().getCommmands().stream()
+      BotBase.getCommandCore().getCommands().stream()
               .filter(command -> mess.getMessageContentWithoutPrefix().split(" ")[0].equalsIgnoreCase(command.getKey()))
               .findFirst()
               .ifPresent(command -> command.execute(mess, BotBase.getApi()));

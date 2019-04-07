@@ -3,17 +3,13 @@ package net.lostillusion.bot.command;
 public abstract class CommandInfo {
     private String key;
     private String briefDescription;
-    private String detailedDescription;
     private String example;
-    private CommandCategory commandCategory;
     private Parameters parameters;
 
-    public CommandInfo(String key, String briefDescription, String detailedDescription, String example, CommandCategory commandCategory, Parameters parameters) {
+    CommandInfo(String key, String briefDescription, String example, Parameters parameters) {
         this.key = key;
         this.briefDescription = briefDescription;
-        this.detailedDescription = detailedDescription;
         this.example = example;
-        this.commandCategory = commandCategory;
         this.parameters = new Parameters(parameters.returnParamaters().toArray(new Parameters.Parameter[0]));
     }
 
@@ -29,16 +25,8 @@ public abstract class CommandInfo {
         return briefDescription;
     }
 
-    public String getDetailedDescription() {
-        return detailedDescription;
-    }
-
     public String getExample() {
         return example;
-    }
-
-    public CommandCategory getCommandCategory() {
-        return commandCategory;
     }
 
     public Parameters getParameters() {

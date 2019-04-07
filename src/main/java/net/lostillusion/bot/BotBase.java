@@ -17,7 +17,7 @@ public class BotBase {
   private static Database database;
   private static String prefix;
   private static Class<? extends UserMess> mess;
-  public BotBase(DiscordApi api, String prefix, CommandCore commandCore, MessageScanner messageScanner, Database database, Class<? extends UserMess> mess) {
+  public BotBase(DiscordApi api, String prefix, CommandCore commandCore, MessageScanner messageScanner, Database database, Class<? extends UserMess> mess, boolean log) {
     BotBase.api = api;
     BotBase.commandCore = commandCore;
     BotBase.messageScanner = messageScanner;
@@ -50,7 +50,7 @@ public class BotBase {
 
   public static Optional<UserMess> getUserMess(MessageCreateEvent event) {
     try {
-      return Optional.ofNullable(mess.getConstructor(MessageCreateEvent.class).newInstance(event));
+      return Optional.of(mess.getConstructor(MessageCreateEvent.class).newInstance(event));
     } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
       Logger.getGlobal().severe("Can't create UserMess object!");
       return Optional.empty();

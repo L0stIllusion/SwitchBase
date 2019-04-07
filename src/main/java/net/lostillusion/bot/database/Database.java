@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
+import net.lostillusion.bot.command.CommandInfo;
 import org.postgresql.Driver;
 import org.postgresql.jdbc.PgConnection;
 import org.postgresql.util.HostSpec;
@@ -13,7 +14,7 @@ import org.postgresql.util.HostSpec;
 public class Database {
     private final String database;
     private final String CONNECTION_URL;
-    Properties login = new Properties();
+    private Properties login = new Properties();
 
     private Database(String url) {
         CONNECTION_URL = url;
@@ -48,8 +49,9 @@ public class Database {
     }
 
     public void connect(SQLConsumer<PostgreConnection> consumer) throws SQLProcessingException {
-        try (PostgreConnection conn = (PostgreConnection) DriverManager.getConnection(CONNECTION_URL, login)) {
-            consumer.accept(conn);
+        try (Connection conn = DriverManager.getConnection(CONNECTION_URL, login);
+             PostgreConnection connection = new PostgreConnection(login, CONNECTION_URL, database, (PgConnection) conn)) {
+                consumer.accept(connection);
         } catch (SQLException e) {
             throw new SQLProcessingException(e);
         }
